@@ -1,54 +1,56 @@
-
-
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        humanIMB humanIMB = new humanIMB(80,1.52);
-        System.out.println(humanIMB.Result());
+        BodyMassIndex bmiCalculator = new BodyMassIndex(80, 1.52);
+        System.out.println(bmiCalculator.getResult());
     }
 }
-class humanIMB {
-    public double W; //Weight Human
-    public double H; // Height Human
-    private static double imb;
-    public humanIMB(double w, double h) {
-        W = w;
-        H = h;
-        imb = W / (H * H);
+
+class BodyMassIndex {
+    private double weight; // Weight of human in kg
+    private double height; // Height of human in meters
+    private double bmi;
+
+    public BodyMassIndex(double weight, double height) {
+        this.weight = weight;
+        this.height = height;
+        this.bmi = calculateBmi();
     }
-    public double takeW() {
-        return W;
+
+    public double getWeight() {
+        return weight;
     }
-    public void putW(double w) {
-        W = w;
-        imb = W / (H * H);
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+        this.bmi = calculateBmi();
     }
-    public double takeH() {
-        return H;
+
+    public double getHeight() {
+        return height;
     }
-    public void putH(double h) {
-        H = h;
-        imb = W / (H * H);
+
+    public void setHeight(double height) {
+        this.height = height;
+        this.bmi = calculateBmi();
     }
-    public static double takeImt() {
-        return imb;
+
+    public double getBmi() {
+        return bmi;
     }
-    public static String Result() {
-        String  string = null;
-        if (imb >=18.5 & imb <25) {
-            string ="Norm";
+
+    private double calculateBmi() {
+        return weight / (height * height);
+    }
+
+    public String getResult() {
+        if (bmi >= 18.5 && bmi < 25) {
+            return "Normal";
+        } else if (bmi >= 25 && bmi < 30) {
+            return "Overweight";
+        } else if (bmi >= 30) {
+            return "Obesity";
+        } else {
+            return "Underweight";
         }
-        if (imb >=25 & imb <30) {
-            string ="Warning! ";
-        }
-        if (imb >=30) {
-            string ="Fat";
-        }
-        if (imb <18.5) {
-            string ="Deficit";
-        }
-        return string;
     }
 }
