@@ -11,6 +11,9 @@ class BodyMassIndex {
     private double bmi;
 
     public BodyMassIndex(double weight, double height) {
+        if (weight <= 0 || height <= 0) {
+            throw new IllegalArgumentException("Weight and height must be positive values.");
+        }
         this.weight = weight;
         this.height = height;
         this.bmi = calculateBmi();
@@ -21,6 +24,9 @@ class BodyMassIndex {
     }
 
     public void setWeight(double weight) {
+        if (weight <= 0) {
+            throw new IllegalArgumentException("Weight must be a positive value.");
+        }
         this.weight = weight;
         this.bmi = calculateBmi();
     }
@@ -30,6 +36,9 @@ class BodyMassIndex {
     }
 
     public void setHeight(double height) {
+        if (height <= 0) {
+            throw new IllegalArgumentException("Height must be a positive value.");
+        }
         this.height = height;
         this.bmi = calculateBmi();
     }
